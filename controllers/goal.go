@@ -1,7 +1,7 @@
 package controllers
 
 import (
-	"duuit/models/dao"
+	"duuit-backend/models/dao"
 	"encoding/json"
 	beego "github.com/beego/beego/v2/server/web"
 	"gorm.io/gorm"
@@ -31,7 +31,7 @@ func (gc *GoalController) Post()  {
 // @Param	id		path 	int	true		"The comment id"
 // @Success 200 {string} dao.Reply
 // @Failure 403 body is empty
-// @routers /:id [get]
+// @routers /:id [delete]
 func (gc *GoalController) Delete()  {
 	var ob dao.User
 	ob.UID = gc.Ctx.Input.Param(":id")

@@ -6,7 +6,7 @@ import (
 	"testing"
 	"runtime"
 	"path/filepath"
-	_ "duuit/routers"
+	_ "duuit-backend/routers"
 
 	beego "github.com/beego/beego/v2/server/web"
 	"github.com/beego/beego/v2/core/logs"

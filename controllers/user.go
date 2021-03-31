@@ -1,7 +1,7 @@
 package controllers
 
 import (
-	"duuit/models/dao"
+	"duuit-backend/models/dao"
 	"encoding/json"
 	"gorm.io/gorm"
 

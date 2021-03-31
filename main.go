@@ -1,17 +1,17 @@
 package main
 
 import (
-	_ "duuit/routers"
-	"github.com/astaxie/beego"
-	"github.com/astaxie/beego/plugins/cors"
+	_ "duuit-backend/routers"
 	"github.com/beego/beego/v2/core/logs"
+	beego "github.com/beego/beego/v2/server/web"
+	cors "github.com/beego/beego/v2/server/web/filter/cors"
 )
 
 func main() {
 	if beego.BConfig.RunMode == "dev" {
 		logs.GetLogger("ORM").Println("dev mode")
 		beego.BConfig.WebConfig.DirectoryIndex = true
-		beego.BConfig.WebConfig.StaticDir["/api/swagger"] = "swagger"
+		beego.BConfig.WebConfig.StaticDir["/v1/api/swagger"] = "swagger"
 	}
 
 	beego.InsertFilter("*", beego.BeforeRouter, cors.Allow(&cors.Options{

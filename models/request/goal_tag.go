@@ -1,5 +1,6 @@
 package request
 
-type GoalTagRequest struct {
-	Tag string `gorm:"primarykey"`
+type TagRequest struct {
+	Tag string
+	Count int
 }

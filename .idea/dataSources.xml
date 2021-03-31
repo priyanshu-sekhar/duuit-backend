@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="AWS RDS Beta" uuid="7ecfa145-5011-45d4-a8b4-f47e4ce23aef">
+    <data-source source="LOCAL" name="duuit-dev" uuid="7ecfa145-5011-45d4-a8b4-f47e4ce23aef">
       <driver-ref>mysql.8</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mysql://duuit-beta.cuzawvpylbyh.us-east-1.rds.amazonaws.com:3306/duuit-beta</jdbc-url>
+      <jdbc-url>jdbc:mysql://duuit-dev.cnxvipfe4y4a.us-east-1.rds.amazonaws.com:3306/</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
   </component>

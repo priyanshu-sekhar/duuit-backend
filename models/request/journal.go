@@ -1,6 +1,6 @@
 package request
 
-import "duuit/models/common"
+import "duuit-backend/models/common"
 
 type JournalRequest struct {
 	TrackingID uint

@@ -1,9 +1,9 @@
 package dao
 
 import (
-	"duuit/models/common"
-	"duuit/models/request"
-	"duuit/utils"
+	"duuit-backend/models/common"
+	"duuit-backend/models/request"
+	"duuit-backend/utils"
 	"gorm.io/gorm"
 	"gorm.io/gorm/clause"
 )
@@ -13,7 +13,7 @@ type Goal struct {
 	request.GoalRequest
 	Status common.Status
 	Tracking []Tracking
-	Tags []*GoalTag
+	Tags []*Tag `gorm:"many2many:goal_tags;"`
 }
 
 func (g *Goal) GetGoal(db *gorm.DB) Goal {

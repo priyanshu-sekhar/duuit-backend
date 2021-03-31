@@ -1,8 +1,8 @@
 package dao
 
 import (
-	"duuit/models/request"
-	"duuit/utils"
+	"duuit-backend/models/request"
+	"duuit-backend/utils"
 	"gorm.io/gorm"
 	"gorm.io/gorm/clause"
 )

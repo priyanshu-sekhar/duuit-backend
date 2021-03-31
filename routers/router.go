@@ -9,9 +9,9 @@ package routers
 
 import (
 	"database/sql"
-	"duuit/controllers"
-	"duuit/models/dao"
-	"duuit/utils"
+	"duuit-backend/controllers"
+	"duuit-backend/models/dao"
+	"duuit-backend/utils"
 	"fmt"
 	beego "github.com/beego/beego/v2/server/web"
 	"gorm.io/driver/mysql"
@@ -26,23 +26,28 @@ func init() {
 	sqlDB, err := sql.Open("mysql", connectionString)
 	utils.LogError(err)
 
-	db, err := gorm.Open(mysql.New(mysql.Config{
+	db, gormErr := gorm.Open(mysql.New(mysql.Config{
 		Conn: sqlDB,
 	}), &gorm.Config{
 		Logger: logger.Default.LogMode(logger.Info),
 	})
-	utils.LogError(err)
+	utils.LogError(gormErr)
 
-
-	migrationError := db.
-		Set("gorm:table_options", "ENGINE=InnoDB").
-		AutoMigrate(
-			&dao.Goal{},
-			&dao.User{},
-		)
-	utils.LogError(migrationError)
+	//migrationError := db.
+	//	Set("gorm:table_options", "ENGINE=InnoDB").
+	//	AutoMigrate(
+	//		&dao.User{},
+	//		&dao.Goal{},
+	//		&dao.Tag{},
+	//		&dao.Journal{},
+	//		&dao.Tracking{},
+	//	)
+	//utils.LogError(migrationError)
 
 	ns := beego.NewNamespace("/v1",
+		beego.NSInclude(
+			&controllers.RootController{},
+		),
 		beego.NSNamespace("/user",
 			beego.NSInclude(
 				&controllers.UserController{},
@@ -56,5 +61,3 @@ func init() {
 	)
 	beego.AddNamespace(ns)
 }
-
-
