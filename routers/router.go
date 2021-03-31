@@ -29,34 +29,35 @@ func init() {
 	db, gormErr := gorm.Open(mysql.New(mysql.Config{
 		Conn: sqlDB,
 	}), &gorm.Config{
+		PrepareStmt: true,
 		Logger: logger.Default.LogMode(logger.Info),
 	})
 	utils.LogError(gormErr)
 
-	//migrationError := db.
-	//	Set("gorm:table_options", "ENGINE=InnoDB").
-	//	AutoMigrate(
-	//		&dao.User{},
-	//		&dao.Goal{},
-	//		&dao.Tag{},
-	//		&dao.Journal{},
-	//		&dao.Tracking{},
-	//	)
-	//utils.LogError(migrationError)
+	migrationError := db.
+		Set("gorm:table_options", "ENGINE=InnoDB").
+		AutoMigrate(
+			&dao.User{},
+			&dao.Goal{},
+			&dao.Tag{},
+			&dao.Journal{},
+			&dao.Tracking{},
+		)
+	utils.LogError(migrationError)
 
-	ns := beego.NewNamespace("/v1",
-		beego.NSInclude(
-			&controllers.RootController{},
-		),
+	ns := beego.NewNamespace("/v2",
 		beego.NSNamespace("/user",
 			beego.NSInclude(
-				&controllers.UserController{},
+				&controllers.UserController{DB: db},
 			),
 		),
 		beego.NSNamespace("/goal",
 			beego.NSInclude(
-				&controllers.GoalController{},
+				&controllers.GoalController{DB: db},
 			),
+		),
+		beego.NSInclude(
+			&controllers.RootController{},
 		),
 	)
 	beego.AddNamespace(ns)

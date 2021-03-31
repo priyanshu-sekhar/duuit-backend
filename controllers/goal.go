@@ -31,7 +31,7 @@ func (gc *GoalController) Post()  {
 // @Param	id		path 	int	true		"The comment id"
 // @Success 200 {string} dao.Reply
 // @Failure 403 body is empty
-// @routers /:id [delete]
+// @router /:id [delete]
 func (gc *GoalController) Delete()  {
 	var ob dao.User
 	ob.UID = gc.Ctx.Input.Param(":id")

@@ -9,7 +9,6 @@ import (
 )
 
 type User struct {
-	UID string `gorm:"primarykey"`
 	CreatedAt time.Time
 	UpdatedAt time.Time
 	request.UserRequest

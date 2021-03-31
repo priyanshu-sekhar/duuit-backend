@@ -30,7 +30,7 @@ github.com/hashicorp/golang-lru
 github.com/hashicorp/golang-lru/simplelru
 # github.com/jinzhu/inflection v1.0.0
 github.com/jinzhu/inflection
-# github.com/jinzhu/now v1.1.1
+# github.com/jinzhu/now v1.1.2
 github.com/jinzhu/now
 # github.com/jtolds/gls v4.20.0+incompatible
 github.com/jtolds/gls
@@ -134,7 +134,7 @@ gopkg.in/yaml.v2
 # gorm.io/driver/mysql v1.0.5
 ## explicit
 gorm.io/driver/mysql
-# gorm.io/gorm v1.21.3
+# gorm.io/gorm v1.21.6
 ## explicit
 gorm.io/gorm
 gorm.io/gorm/callbacks

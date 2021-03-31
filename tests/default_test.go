@@ -1,15 +1,15 @@
 package test
 
 import (
+	_ "duuit-backend/routers"
 	"net/http"
 	"net/http/httptest"
-	"testing"
-	"runtime"
 	"path/filepath"
-	_ "duuit-backend/routers"
+	"runtime"
+	"testing"
 
-	beego "github.com/beego/beego/v2/server/web"
 	"github.com/beego/beego/v2/core/logs"
+	beego "github.com/beego/beego/v2/server/web"
 	. "github.com/smartystreets/goconvey/convey"
 )
 

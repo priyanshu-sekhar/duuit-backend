@@ -3,15 +3,22 @@ package controllers
 import (
 	"duuit-backend/models/dao"
 	"encoding/json"
-	"gorm.io/gorm"
-
 	beego "github.com/beego/beego/v2/server/web"
+	"gorm.io/gorm"
 )
 
-// Operations about Users
 type UserController struct {
 	DB *gorm.DB
 	beego.Controller
+}
+
+// @Title Ping
+// @Description ping
+// @Success 200
+// @router /ping [get]
+func (uc *UserController) Ping() {
+	uc.Data["json"] = "Duuit Users!!"
+	uc.ServeJSON()
 }
 
 // @Title Get
@@ -19,11 +26,9 @@ type UserController struct {
 // @Param	id		path 	int	true		"The user id"
 // @Success 200 {string} dao.User
 // @Failure 403 body is empty
-// @routers /:id [get]
+// @router /:id [get]
 func (uc *UserController) Get() {
-	var ob dao.User
-	ob.UID = uc.Ctx.Input.Param(":id")
-	uc.Data["json"] = ob.GetUser(uc.DB)
+	uc.Data["json"] = "Duuit Users!!"
 	uc.ServeJSON()
 }
 
@@ -33,7 +38,7 @@ func (uc *UserController) Get() {
 // @Param course body request.UserRequest true "Include fields to be updated"
 // @Success 200 {string} dao.User
 // @Failure 403 body is empty
-// @routers /:id [put]
+// @router /:id [put]
 func (uc *UserController) Put() {
 	var ob dao.User
 	var newOb dao.User
@@ -47,7 +52,7 @@ func (uc *UserController) Put() {
 // @Description add new user
 // @Param course body request.UserRequest true "The user object"
 // @Success 200 {user} dao.User
-// @routers / [post]
+// @router / [post]
 func (uc *UserController) Post() {
 	var ob dao.User
 	json.Unmarshal(uc.Ctx.Input.RequestBody, &ob)
@@ -60,13 +65,14 @@ func (uc *UserController) Post() {
 // @Param	id		path 	int	true		"The user id"
 // @Success 200 {string}
 // @Failure 403 body is empty
-// @routers /:id [delete]
+// @router /:id [delete]
 func (uc *UserController) Delete() {
 	var ob dao.User
 	ob.UID = uc.Ctx.Input.Param(":id")
 	ob.DeleteUser(uc.DB)
 	uc.Finish()
 }
+
 
 
 

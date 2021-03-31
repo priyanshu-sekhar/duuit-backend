@@ -77,12 +77,23 @@ func (p *processor) Execute(db *DB) {
 		stmt    = db.Statement
 	)
 
+	// call scopes
+	for len(stmt.scopes) > 0 {
+		scopes := stmt.scopes
+		stmt.scopes = nil
+		for _, scope := range scopes {
+			db = scope(db)
+		}
+	}
+
+	// assign model values
 	if stmt.Model == nil {
 		stmt.Model = stmt.Dest
 	} else if stmt.Dest == nil {
 		stmt.Dest = stmt.Model
 	}
 
+	// parse model values
 	if stmt.Model != nil {
 		if err := stmt.Parse(stmt.Model); err != nil && (!errors.Is(err, schema.ErrUnsupportedDataType) || (stmt.Table == "" && stmt.SQL.Len() == 0)) {
 			if errors.Is(err, schema.ErrUnsupportedDataType) && stmt.Table == "" {
@@ -93,10 +104,11 @@ func (p *processor) Execute(db *DB) {
 		}
 	}
 
+	// assign stmt.ReflectValue
 	if stmt.Dest != nil {
 		stmt.ReflectValue = reflect.ValueOf(stmt.Dest)
 		for stmt.ReflectValue.Kind() == reflect.Ptr {
-			if stmt.ReflectValue.IsNil() {
+			if stmt.ReflectValue.IsNil() && stmt.ReflectValue.CanAddr() {
 				stmt.ReflectValue.Set(reflect.New(stmt.ReflectValue.Type().Elem()))
 				break
 			}
@@ -106,13 +118,6 @@ func (p *processor) Execute(db *DB) {
 		if !stmt.ReflectValue.IsValid() {
 			db.AddError(ErrInvalidValue)
 		}
-	}
-
-	// call scopes
-	scopes := stmt.scopes
-	stmt.scopes = nil
-	for _, scope := range scopes {
-		db = scope(db)
 	}
 
 	for _, f := range p.fns {

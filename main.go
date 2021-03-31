@@ -11,7 +11,9 @@ func main() {
 	if beego.BConfig.RunMode == "dev" {
 		logs.GetLogger("ORM").Println("dev mode")
 		beego.BConfig.WebConfig.DirectoryIndex = true
-		beego.BConfig.WebConfig.StaticDir["/v1/api/swagger"] = "swagger"
+		beego.BConfig.WebConfig.EnableDocs = true
+		beego.BConfig.WebConfig.AutoRender = true
+		beego.BConfig.WebConfig.StaticDir["/v2/api/swagger"] = "swagger"
 	}
 
 	beego.InsertFilter("*", beego.BeforeRouter, cors.Allow(&cors.Options{

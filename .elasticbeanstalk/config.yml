@@ -1,0 +1,6 @@
+branch-defaults:
+  v2:
+    environment: null
+    group_suffix: null
+global:
+  profile: duuit

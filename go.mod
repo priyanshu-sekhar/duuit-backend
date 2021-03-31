@@ -7,5 +7,5 @@ require (
 	github.com/smartystreets/goconvey v1.6.4
 	github.com/stretchr/testify v1.5.1 // indirect
 	gorm.io/driver/mysql v1.0.5
-	gorm.io/gorm v1.21.3
+	gorm.io/gorm v1.21.6
 )
