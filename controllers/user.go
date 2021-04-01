@@ -26,9 +26,11 @@ func (uc *UserController) Ping() {
 // @Param	id		path 	int	true		"The user id"
 // @Success 200 {string} dao.User
 // @Failure 403 body is empty
-// @router /:id [get]
+// @routers /:id [get]
 func (uc *UserController) Get() {
-	uc.Data["json"] = "Duuit Users!!"
+	var ob dao.User
+	ob.UID = uc.Ctx.Input.Param(":id")
+	uc.Data["json"] = ob.GetUser(uc.DB)
 	uc.ServeJSON()
 }
 

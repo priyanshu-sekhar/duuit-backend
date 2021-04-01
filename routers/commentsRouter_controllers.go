@@ -34,15 +34,6 @@ func init() {
             Filters: nil,
             Params: nil})
 
-    beego.GlobalControllerRouter["duuit-backend/controllers:PeopleController"] = append(beego.GlobalControllerRouter["duuit-backend/controllers:PeopleController"],
-        beego.ControllerComments{
-            Method: "Ping",
-            Router: "/ping",
-            AllowHTTPMethods: []string{"get"},
-            MethodParams: param.Make(),
-            Filters: nil,
-            Params: nil})
-
     beego.GlobalControllerRouter["duuit-backend/controllers:RootController"] = append(beego.GlobalControllerRouter["duuit-backend/controllers:RootController"],
         beego.ControllerComments{
             Method: "Get",
